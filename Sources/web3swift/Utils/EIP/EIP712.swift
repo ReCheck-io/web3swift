@@ -10,7 +10,7 @@ struct EIP712Domain: EIP712DomainHashable {
 }
 
 struct EIP712DomainV4: EIP712DomainHashable {
-    let typehash:           String
+    let typeHash:           String
     let name:               String
     let version:            String
     let chainId:            EIP712.UInt256?
@@ -19,7 +19,7 @@ struct EIP712DomainV4: EIP712DomainHashable {
 
 protocol EIP712DomainHashable: EIP712Hashable {}
 
-public struct SafeTx: EIP712Hashable {
+public struct SafeTx: EIP712Hashable, Codable {
     let to:             EIP712.Address
     let value:          EIP712.UInt256
     let data:           EIP712.Bytes

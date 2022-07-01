@@ -54,11 +54,16 @@ public struct Web3Signer {
                                   account: EthereumAddress,
                                   password: String? = nil,
                                   chainId: BigUInt? = nil,
-                                  name: String? = nil,
-                                  version: String? = nil,
-                                  typeHash: String? = nil) throws -> Data {
+                                  name: String,
+                                  version: String,
+                                  typeHash: String) throws -> Data {
 
-        let domainSeparator: EIP712DomainHashable = EIP712DomainV4(typeHash: typeHash, name: name, version: version, chainId: chainId, verifyingContract: verifyingContract)
+        let domainSeparator: EIP712DomainHashable = EIP712DomainV4(
+            typeHash: typeHash,
+            name: name,
+            version: version,
+            chainId: chainId,
+            verifyingContract: verifyingContract)
 
         let password = password ?? ""
         let hash = try eip712encode(domainSeparator: domainSeparator, message: safeTx)
