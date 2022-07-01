@@ -9,6 +9,14 @@ struct EIP712Domain: EIP712DomainHashable {
     let verifyingContract:  EIP712.Address
 }
 
+struct EIP712DomainV4: EIP712DomainHashable {
+    let typehash:           String
+    let name:               String
+    let version:            String
+    let chainId:            EIP712.UInt256?
+    let verifyingContract:  EIP712.Address
+}
+
 protocol EIP712DomainHashable: EIP712Hashable {}
 
 public struct SafeTx: EIP712Hashable {
