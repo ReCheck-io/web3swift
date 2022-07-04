@@ -46,6 +46,33 @@ public struct SafeTx: EIP712Hashable, Codable {
 
 }
 
+public struct SafeTxStr: EIP712Hashable, Codable {
+    let to:             EIP712.Address
+    let value:          String
+    let data:           String
+    let operation:      String
+    let safeTxGas:      String
+    let baseGas:        String
+    let gasPrice:       String
+    let gasToken:       EIP712.Address
+    let refundReceiver: EIP712.Address
+    let nonce:          String
+
+    public init(to: EIP712.Address, value: EIP712.UInt256, data: EIP712.Bytes, operation: EIP712.UInt8, safeTxGas: EIP712.UInt256, baseGas: EIP712.UInt256, gasPrice: EIP712.UInt256, gasToken: EIP712.Address, refundReceiver: EIP712.Address, nonce: EIP712.UInt256) {
+        self.to = to
+        self.value = String.init(value)
+        self.data = "0x" + data.toHexString()
+        self.operation = String.init(operation)
+        self.safeTxGas = String.init(safeTxGas)
+        self.baseGas = String.init(baseGas)
+        self.gasPrice = String.init(gasPrice)
+        self.gasToken = gasToken
+        self.refundReceiver = refundReceiver
+        self.nonce = String.init(nonce)
+    }
+
+}
+
 /// Protocol defines EIP712 struct encoding
 public protocol EIP712Hashable {
     var typehash: Data { get }
